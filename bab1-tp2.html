@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Ekonomi Kelas 11 - UMKM</title>
+    <!-- Font Awesome untuk Ikon Berwarna -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Warna diambil dari gambar referensi image_31abfc.png */
+            --warna-ungu: #9207A5;
+            --warna-biru: #0000FF;
+            --warna-hijau-terang: #00FF00;
+            --warna-kuning: #FFFF0D;
+            --warna-oranye: #FF9900;
+            --warna-merah: #CC0000;
+            --warna-hijau-tua: #008200;
+            
+            --bg-color: #Fdfdfd;     
+            --text-color: #222222;   
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-image: radial-gradient(rgba(255, 255, 13, 0.1) 10%, transparent 10%), 
+                              radial-gradient(rgba(0, 255, 0, 0.05) 10%, transparent 10%);
+            background-size: 50px 50px;
+            background-position: 0 0, 25px 25px;
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        /* ----- NAVIGASI INTERAKTIF & ANIMASI ----- */
+        nav {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
+            border-bottom: 4px solid var(--warna-merah);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 1.1em;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        nav a:nth-child(1) { background-color: var(--warna-ungu); }
+        nav a:nth-child(2) { background-color: var(--warna-biru); }
+        nav a:nth-child(3) { background-color: var(--warna-oranye); }
+        nav a:nth-child(4) { background-color: var(--warna-hijau-tua); }
+        nav a:nth-child(5) { background-color: var(--warna-merah); }
+
+        nav a:hover {
+            transform: translateY(-5px) scale(1.1) rotate(-3deg);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+        }
+
+        /* ----- HEADER UTAMA ----- */
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, var(--warna-ungu), var(--warna-biru));
+            color: white;
+            border-bottom-left-radius: 30% 10%;
+            border-bottom-right-radius: 30% 10%;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInDown 1s ease-out;
+            border-bottom: 8px solid var(--warna-kuning);
+        }
+
+        header h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 0 var(--text-color);
+            letter-spacing: 2px;
+            animation: pulse 2s infinite;
+        }
+
+        header h3 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+            background: rgba(0,0,0,0.3);
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            backdrop-filter: blur(2px);
+        }
+
+        header p.guru {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--warna-kuning);
+            margin-top: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        /* ----- CONTAINER & KARTU KONTEN ----- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border: 4px solid var(--warna-hijau-terang);
+            transform: translateY(0);
+            transition: all 0.4s ease;
+        }
+
+        section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border-color: var(--warna-oranye);
+        }
+
+        h2 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--warna-merah);
+            border-bottom: 4px dashed var(--warna-oranye);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: var(--warna-biru);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+
+        .icon-bounce { animation: bounce 2s infinite; }
+        .icon-spin { animation: spin 4s linear infinite; }
+        .icon-shake { animation: shake 1.5s infinite; }
+        .icon-pulse { animation: pulse 1.5s infinite; }
+
+        /* ----- INFO BOX & HIGHLIGHTS ----- */
+        .tujuan-box {
+            background: linear-gradient(to right, var(--warna-kuning), #fffbc9);
+            border-left: 8px solid var(--warna-oranye);
+            padding: 20px;
+            border-radius: 10px 20px 20px 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            box-shadow: 3px 3px 0 var(--warna-oranye);
+        }
+
+        .pemantik-box {
+            background-color: var(--warna-ungu);
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            font-size: 1.2em;
+            box-shadow: 5px 5px 0 var(--warna-hijau-terang);
+        }
+
+        ul, ol { margin-left: 25px; margin-bottom: 15px; }
+        li { margin-bottom: 8px; font-size: 1.1em; font-weight: bold;}
+
+        /* ----- INFOGRAFIS TABEL ----- */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            margin: 20px 0;
+            border: 3px solid var(--warna-biru);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            font-size: 1.1em;
+        }
+
+        th {
+            background-color: var(--warna-biru);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-family: 'Fredoka One', cursive;
+            letter-spacing: 1px;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 2px solid #ddd;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) { background-color: #f4f4ff; }
+        tr:hover { background-color: var(--warna-kuning); color: var(--text-color); }
+
+        /* ----- KARTU EVALUASI ----- */
+        .eval-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .eval-card {
+            background: white;
+            border: 3px solid var(--warna-oranye);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .eval-card:hover { transform: scale(1.05) rotate(2deg); border-color: var(--warna-merah); }
+        .eval-card h4 { color: var(--warna-ungu); font-size: 1.2em; margin-bottom: 15px; }
+        .eval-yes { background: var(--warna-hijau-terang); color: #005000; padding: 10px; border-radius: 10px; margin-bottom: 10px; font-weight: bold; border-left: 5px solid var(--warna-hijau-tua);}
+        .eval-no { background: #ffcccc; color: var(--warna-merah); padding: 10px; border-radius: 10px; font-weight: bold; border-left: 5px solid var(--warna-merah);}
+
+        /* ----- KUIS INTERAKTIF ----- */
+        .quiz-section {
+            background: linear-gradient(135deg, var(--warna-hijau-tua), var(--warna-biru));
+            color: white;
+            border-color: var(--warna-kuning);
+            border-width: 5px;
+        }
+
+        .quiz-section h2 { color: var(--warna-kuning); border-bottom-color: white; }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 3px solid var(--warna-oranye);
+            border-radius: 15px;
+            font-size: 1.1em;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input[type="text"]:focus {
+            border-color: var(--warna-merah);
+        }
+
+        .question-box {
+            background: rgba(255,255,255,0.95);
+            color: var(--text-color);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border-left: 8px solid var(--warna-ungu);
+        }
+
+        .question-text {
+            font-weight: 800;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: var(--warna-merah);
+        }
+
+        .option-label {
+            display: block;
+            background: white;
+            margin: 10px 0;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 2px solid #ccc;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: bold;
+        }
+
+        .option-label:hover {
+            background: var(--warna-kuning);
+            border-color: var(--warna-oranye);
+            transform: translateX(10px);
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        .btn-submit {
+            background-color: var(--warna-merah);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.3em;
+            font-family: 'Fredoka One', cursive;
+            border-radius: 30px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            margin-top: 30px;
+            box-shadow: 0 5px 0 #800000;
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+
+        .btn-submit:active {
+            transform: translateY(5px);
+            box-shadow: 0 0 0 #800000;
+        }
+
+        #quiz-result-container {
+            display: none;
+            background: white;
+            color: var(--text-color);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 30px;
+            border: 5px solid var(--warna-ungu);
+            animation: fadeIn 0.5s;
+        }
+
+        #score-display {
+            font-family: 'Fredoka One', cursive;
+            font-size: 4em;
+            color: var(--warna-merah);
+            margin: 10px 0;
+        }
+
+        .btn-email {
+            background-color: var(--warna-biru);
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.2em;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .btn-email:hover {
+            transform: scale(1.1);
+            background-color: var(--warna-ungu);
+        }
+
+        /* ----- ANIMASI KEYFRAMES ----- */
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-15px); } 60% { transform: translateY(-7px); } }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-5px) rotate(-5deg); } 50% { transform: translateX(5px) rotate(5deg); } 75% { transform: translateX(-5px) rotate(-5deg); } 100% { transform: translateX(0); } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2em; }
+            h2 { font-size: 1.5em; }
+            nav { padding: 10px; gap: 8px; }
+            nav a { font-size: 0.9em; padding: 8px 12px; }
+            section { padding: 20px; }
+            .btn-submit { font-size: 1.1em; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGASI -->
+    <nav>
+        <a href="#tujuan"><i class="fas fa-bullseye icon-shake"></i> Tujuan</a>
+        <a href="#pemantik"><i class="fas fa-lightbulb icon-pulse"></i> Pemantik</a>
+        <a href="#materi"><i class="fas fa-book-open icon-bounce"></i> Materi</a>
+        <a href="#infografis"><i class="fas fa-chart-pie icon-spin"></i> Infografis</a>
+        <a href="#kuis"><i class="fas fa-gamepad icon-bounce"></i> Kuis Evaluasi</a>
+    </nav>
+
+    <!-- HEADER -->
+    <header>
+        <h1>MATERI PEMBELAJARAN EKONOMI KELAS 11</h1>
+        <h3><i class="far fa-calendar-alt"></i> <span id="current-date"></span></h3>
+        <p style="font-size: 1.4em; font-weight: bold; margin-top: 15px;"><i class="fas fa-school"></i> SMA ADVENT BATAM</p>
+        <p class="guru"><i class="fas fa-chalkboard-teacher"></i> Guru : Ir. Budhy Prasetyo</p>
+        <!-- Dekorasi Latar Belakang Header -->
+        <i class="fas fa-coins" style="position:absolute; top:20px; left:30px; font-size:3em; color:var(--warna-kuning); opacity:0.8; animation: spin 10s linear infinite;"></i>
+        <i class="fas fa-chart-line" style="position:absolute; bottom:20px; right:30px; font-size:4em; color:var(--warna-hijau-terang); opacity:0.8; animation: bounce 3s infinite;"></i>
+    </header>
+
+    <div class="container">
+
+        <!-- TUJUAN PEMBELAJARAN -->
+        <section id="tujuan">
+            <h2><i class="fas fa-rocket icon-shake" style="color:var(--warna-ungu)"></i> Tujuan Pembelajaran Utama</h2>
+            <div class="tujuan-box">
+                <p>"Mengevaluasi operasional UMKM di lingkungan sekitar melalui observasi dan studi kasus nyata untuk memahami praktik ekonomi secara langsung."</p>
+            </div>
+        </section>
+
+        <!-- PERTANYAAN PEMANTIK -->
+        <section id="pemantik">
+            <h2><i class="fas fa-fire icon-pulse"></i> Pertanyaan Pemantik</h2>
+            <div class="pemantik-box">
+                <p style="margin-bottom:10px;"><i class="fas fa-question-circle" style="color:var(--warna-kuning)"></i> Pernahkah kamu memperhatikan warung kelontong atau tukang bakso di dekat rumahmu?</p>
+                <p style="margin-bottom:10px;"><i class="fas fa-question-circle" style="color:var(--warna-kuning)"></i> Pernahkah terbayang bagaimana cara mereka berbelanja, memasak, menjual, hingga menghitung keuntungannya setiap hari?</p>
+                <p style="color:var(--warna-hijau-terang); font-weight:bold;"><i>Mari kita pelajari rahasia dapur mereka!</i></p>
+            </div>
+        </section>
+
+        <!-- MATERI PEMBELAJARAN -->
+        <section id="materi">
+            <h2><i class="fas fa-book-reader icon-bounce" style="color:var(--warna-biru)"></i> Materi Pembelajaran</h2>
+            
+            <h3><i class="fas fa-store" style="color:var(--warna-oranye)"></i> 1. Mengenal UMKM</h3>
+            <p><strong>UMKM</strong> adalah singkatan dari <strong>Usaha Mikro, Kecil, dan Menengah</strong>. UMKM adalah usaha dagang milik warga biasa di lingkungan sekitar, bukan milik perusahaan besar atau negara.</p>
+            <p style="margin-top:10px; font-weight:bold; color:var(--warna-ungu);">Contoh UMKM di Sekitar Kita:</p>
+            <ul style="list-style-type: none; margin-left:10px;">
+                <li><i class="fas fa-check-circle" style="color:var(--warna-hijau-tua)"></i> Warung sembako.</li>
+                <li><i class="fas fa-check-circle" style="color:var(--warna-hijau-tua)"></i> Penjual bakso keliling.</li>
+                <li><i class="fas fa-check-circle" style="color:var(--warna-hijau-tua)"></i> Tempat pangkas rambut.</li>
+                <li><i class="fas fa-check-circle" style="color:var(--warna-hijau-tua)"></i> Bengkel sepeda motor.</li>
+            </ul>
+
+            <hr style="border: 2px dashed #ddd; margin: 20px 0;">
+
+            <h3><i class="fas fa-cogs" style="color:var(--warna-ungu)"></i> 2. Cara Kerja (Operasional) UMKM</h3>
+            <p>Setiap usaha kecil memiliki 4 urutan kerja pasti yang dilakukan setiap hari. Proses ini saling berhubungan dan tidak boleh terlewat.</p>
+            <ol style="color:var(--text-color);">
+                <li><strong>Belanja Modal:</strong> Pemilik usaha membeli bahan baku mentah.</li>
+                <li><strong>Produksi:</strong> Pemilik usaha mengolah bahan mentah menjadi barang jadi atau menyiapkan alat kerja.</li>
+                <li><strong>Penjualan:</strong> Pemilik usaha melayani pembeli dan memberikan barang atau jasa.</li>
+                <li><strong>Pencatatan Keuangan:</strong> Pemilik usaha menghitung uang masuk dan memisahkan uang modal dengan uang keuntungan.</li>
+            </ol>
+        </section>
+
+        <!-- INFOGRAFIS / TABEL STUDI KASUS -->
+        <section id="infografis">
+            <h2><i class="fas fa-search-location icon-spin" style="color:var(--warna-hijau-tua)"></i> Infografis Studi Kasus</h2>
+            <h3>3. Studi Kasus Nyata: Warung Nasi Goreng</h3>
+            <p>Mari kita amati cara kerja sebuah warung nasi goreng pada malam hari untuk melihat praktik ekonomi secara langsung.</p>
+            
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-list-ol"></i> Tahap Operasional</th>
+                            <th><i class="fas fa-eye"></i> Tindakan Nyata Pemilik Usaha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. Belanja Modal</strong> <i class="fas fa-shopping-basket" style="color:var(--warna-ungu)"></i></td>
+                            <td>Membeli beras, telur, sayur, dan bumbu di pasar pada pagi hari.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Produksi</strong> <i class="fas fa-fire-burner" style="color:var(--warna-oranye)"></i></td>
+                            <td>Memasak nasi goreng di wajan besar saat ada pesanan datang.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Penjualan</strong> <i class="fas fa-hand-holding-usd" style="color:var(--warna-hijau-tua)"></i></td>
+                            <td>Menyajikan nasi goreng panas ke meja pembeli dan menjaga meja tetap bersih.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4. Keuangan</strong> <i class="fas fa-calculator" style="color:var(--warna-biru)"></i></td>
+                            <td>Menyimpan uang pembayaran di laci dan menghitung total pendapatan saat warung tutup.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <hr style="border: 2px dashed #ddd; margin: 30px 0;">
+
+            <h3><i class="fas fa-clipboard-check" style="color:var(--warna-merah)"></i> 4. Cara Menilai (Mengevaluasi) UMKM</h3>
+            <p>Evaluasi berarti kita menilai apakah sebuah usaha berjalan dengan baik atau buruk. Kita bisa menilainya secara tegas dengan menjawab 4 pertanyaan ini saat melakukan observasi di lapangan:</p>
+            
+            <div class="eval-grid">
+                <div class="eval-card">
+                    <h4>1. Apakah pembeli selalu berdatangan? <i class="fas fa-users" style="color:var(--warna-biru)"></i></h4>
+                    <div class="eval-yes"><i class="fas fa-smile"></i> Ya: Usaha sehat. Barang atau jasanya disukai orang.</div>
+                    <div class="eval-no"><i class="fas fa-frown"></i> Tidak: Usaha sakit. Harganya mungkin terlalu mahal atau rasanya kurang enak.</div>
+                </div>
+                <div class="eval-card">
+                    <h4>2. Apakah tempat usahanya bersih dan terang? <i class="fas fa-broom" style="color:var(--warna-oranye)"></i></h4>
+                    <div class="eval-yes"><i class="fas fa-smile"></i> Ya: Pengelolaan baik. Pembeli merasa nyaman dan aman.</div>
+                    <div class="eval-no"><i class="fas fa-frown"></i> Tidak: Pengelolaan buruk. Pembeli merasa jijik dan tidak mau kembali.</div>
+                </div>
+                <div class="eval-card">
+                    <h4>3. Apakah barang dagangan selalu tersedia? <i class="fas fa-box-open" style="color:var(--warna-ungu)"></i></h4>
+                    <div class="eval-yes"><i class="fas fa-smile"></i> Ya: Perencanaan bagus. Penjual teliti menghitung barang.</div>
+                    <div class="eval-no"><i class="fas fa-frown"></i> Tidak: Perencanaan buruk. Pembeli kecewa jika barang selalu habis.</div>
+                </div>
+                <div class="eval-card">
+                    <h4>4. Apakah penjual mencatat/memisahkan uangnya? <i class="fas fa-book" style="color:var(--warna-hijau-tua)"></i></h4>
+                    <div class="eval-yes"><i class="fas fa-smile"></i> Ya: Keuangan aman. Uang modal tidak habis untuk belanja keluarga.</div>
+                    <div class="eval-no"><i class="fas fa-frown"></i> Tidak: Keuangan berbahaya. Usaha bisa cepat bangkrut.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KUIS INTERAKTIF & PENGIRIMAN NILAI -->
+        <section id="kuis" class="quiz-section">
+            <h2><i class="fas fa-trophy icon-bounce"></i> Kuis Evaluasi Pembelajaran</h2>
+            <p style="font-size:1.1em; margin-bottom:20px;">Silakan masukkan identitasmu dan jawab 10 pertanyaan di bawah ini untuk mendapatkan nilai akhir!</p>
+
+            <form id="quizForm">
+                <!-- Data Siswa -->
+                <div style="background: rgba(255,255,255,0.2); padding:20px; border-radius:15px; margin-bottom:20px; border: 2px solid var(--warna-kuning);">
+                    <div class="form-group">
+                        <label for="nama_siswa"><i class="fas fa-user-edit" style="color:var(--warna-kuning)"></i> Nama Lengkap:</label>
+                        <input type="text" id="nama_siswa" placeholder="Ketik nama lengkapmu di sini..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas_siswa"><i class="fas fa-chalkboard" style="color:var(--warna-kuning)"></i> Kelas:</label>
+                        <input type="text" id="kelas_siswa" placeholder="Contoh: 11 IPS 1" required>
+                    </div>
+                </div>
+
+                <!-- SOAL KUIS (1-10) -->
+                <div class="question-box">
+                    <div class="question-text">1. Kepanjangan dari UMKM adalah...</div>
+                    <label class="option-label"><input type="radio" name="q1" value="A"> A. Usaha Makro, Kecil, dan Menengah</label>
+                    <label class="option-label"><input type="radio" name="q1" value="B"> B. Usaha Mikro, Kecil, dan Menengah</label>
+                    <label class="option-label"><input type="radio" name="q1" value="C"> C. Usaha Mandiri, Kecil, dan Menengah</label>
+                    <label class="option-label"><input type="radio" name="q1" value="D"> D. Usaha Mikro, Koperasi, dan Menengah</label>
+                    <label class="option-label"><input type="radio" name="q1" value="E"> E. Usaha Milik Keluarga dan Masyarakat</label>
+                </div>
+
+                <div class="question-box">
+                    <div class="question-text">2. Berikut ini yang <strong>bukan</strong> merupakan contoh UMKM di sekitar kita adalah...</div>
+                    <label class="option-label"><input type="radio" name="q2" value="A"> A. Warung sembako</label>
+                    <label class="option-label"><input type="radio" name="q2" value="B"> B. Penjual bakso keliling</label>
+                    <label class="option-label"><input type="radio" name="q2" value="C"> C. Tempat pangkas rambut</label>
+                    <label class="option-label"><input type="radio" name="q2" value="D"> D. Bengkel sepeda motor</label>
+                    <label class="option-label"><input type="radio" name="q2" value="E"> E. Perusahaan Listrik Negara (PLN)</label>
+                </div>
+
+                <div class="question-box">
+                    <div class="question-text">3. Tahapan operasional UMKM di mana pemilik usaha mengolah bahan mentah menjadi barang jadi atau menyiapkan alat kerja disebut tahap...</div>
+                    <label class="option-label"><input type="radio" name="q3" value="A"> A. Belanja Modal</label>
+                    <label class="option-label"><input type="radio" name="q3" value="B"> B. Pemasaran</label>
+                    <label class="option-label"><input type="radio" name="q3" value="C"> C. Produksi</label>
+                    <label class="option-label"><input type="radio" name="q3" value="D"> D. Penjualan</label>
+                    <label class="option-label"><input type="radio" name="q3" value="E"> E. Pencatatan Keuangan</label>
+                </div>
+
+                <div class="question-box">
+                    <div class="question-text">4. Pak Budi membeli pisang, tepung, dan minyak goreng di pasar pada pagi hari. Dalam urutan operasional UMKM, tahap ini disebut...</div>
+                    <label class="option-label"><input type="radio" name="q4" value="A"> A. Produksi</label>
+                    <label class="option-label"><input type="radio" name="q4" value="B"> B. Penjualan</label>
+                    <label class="option-label"><input type="radio" name="q4" value="C"> C. Belanja Modal</label>
+                    <label class="option-label"><input type="radio" name="q4" value="D"> D. Pencatatan Keuangan</label>
+                    <label class="option-label"><input type="radio" name="q4" value="E"> E. Evaluasi Usaha</label>
+                </div>
+
+                <div class="question-box">
+                    <div class="question-text">5. Mengapa seorang pemilik UMKM diwajibkan memisahkan uang modal usaha dengan uang keuntungan (uang untuk keluarga)?</div>
+                    <label class="option-label"><input type="radio" name="q5" value="A"> A. Agar usaha cepat bangkrut</label>
+                    <label class="option-label"><input type="radio" name="q5" value="B"> B. Agar bisa belanja bahan baku sembarangan</label>
+                    <label class="option-label"><input type="radio" name="q5" value="C"> C. Agar uang modal tidak ikut habis terpakai dan usaha tetap berjalan</label>
+                    <label class="option-label"><input type="radio" name="q5" value="D"> D. Agar tempat usaha menjadi kotor</label>
+                    <label class="option-label"><input type="radio" name="q5" value="E"> E. Agar pembeli tidak datang lagi</label>
+                </div>
+
+                <div class="question-box">
+                    <div class="question-text">6. Saat melakukan observasi ke sebuah warung kelontong, kamu melihat rak barangnya sering kosong dan pembeli sering kecewa karena barang yang dicari habis. Kesimpulan evaluasi yang tepat adalah...</div>
+                    <label class="option-label"><input type="radio" name="q6" value="A"> A. Usaha sangat sehat dan barang cepat laku</label>
+                    <label class="option-label"><input type="radio" name="q6" value="B"> B. Perencanaan belanja barang buruk sehingga stok selalu habis</label>
+                    <label class="option-label"><input type="radio" name="q6" value="C"> C. Pengelolaan keuangan sangat aman</label>
+                    <label class="option-label"><input type="radio" name="q6" value="D"> D. Tempat usaha sangat bersih dan terang</label>
+                    <label class="option-label"><input type="radio" name="q6" value="E"> E. Penjual teliti dalam menghitung jumlah barang</label>
+                </div>
+
+                <div class="question-box">
+                    <div class="question-text">7. Jika sebuah usaha UMKM memiliki tempat yang bersih dan terang, dampak positifnya bagi pembeli adalah...</div>
+                    <label class="option-label"><input type="radio" name="q7" value="A"> A. Pembeli merasa jijik</label>
+                    <label class="option-label"><input type="radio" name="q7" value="B"> B. Pembeli merasa nyaman, aman, dan ingin kembali</label>
+                    <label class="option-label"><input type="radio" name="q7" value="C"> C. Pembeli akan mengira harganya sangat mahal</label>
+                    <label class="option-label"><input type="radio" name="q7" value="D"> D. Pembeli tidak akan mau datang lagi</label>
+                    <label class="option-label"><input type="radio" name="q7" value="E"> E. Pembeli akan langsung pulang ke rumah</label>
+                </div>
+
+                <div class="question-box">
+                    <div class="question-text">8. Berdasarkan studi kasus warung nasi goreng, tindakan nyata yang dilakukan pada tahap "Penjualan" adalah...</div>
+                    <label class="option-label"><input type="radio" name="q8" value="A"> A. Membeli beras, telur, dan sayur di pasar</label>
+                    <label class="option-label"><input type="radio" name="q8" value="B"> B. Memasak nasi goreng di wajan besar</label>
+                    <label class="option-label"><input type="radio" name="q8" value="C"> C. Menghitung total pendapatan saat warung tutup</label>
+                    <label class="option-label"><input type="radio" name="q8" value="D"> D. Menyimpan uang pembayaran di dompet pribadi</label>
+                    <label class="option-label"><input type="radio" name="q8" value="E"> E. Menyajikan nasi goreng panas ke meja pembeli dan menjaga meja tetap bersih</label>
+                </div>
+
+                <div class="question-box">
+                    <div class="question-text">9. Apabila pembeli jarang berdatangan ke sebuah warung makan, kemungkinan penyebab utama menurut evaluasi UMKM adalah...</div>
+                    <label class="option-label"><input type="radio" name="q9" value="A"> A. Harganya terlalu mahal atau rasanya kurang enak</label>
+                    <label class="option-label"><input type="radio" name="q9" value="B"> B. Penjual sangat ramah dan sopan</label>
+                    <label class="option-label"><input type="radio" name="q9" value="C"> C. Tempat usahanya terlalu bersih</label>
+                    <label class="option-label"><input type="radio" name="q9" value="D"> D. Penjual selalu mencatat keuangan dengan rapi</label>
+                    <label class="option-label"><input type="radio" name="q9" value="E"> E. Bahan baku yang disiapkan terlalu banyak</label>
+                </div>
+
+                <div class="question-box">
+                    <div class="question-text">10. Tujuan utama kita melakukan observasi dan studi kasus pada UMKM di lingkungan sekitar adalah...</div>
+                    <label class="option-label"><input type="radio" name="q10" value="A"> A. Untuk meminta barang dagangan secara gratis</label>
+                    <label class="option-label"><input type="radio" name="q10" value="B"> B. Untuk memahami praktik ekonomi secara langsung</label>
+                    <label class="option-label"><input type="radio" name="q10" value="C"> C. Untuk mengambil alih usaha tersebut</label>
+                    <label class="option-label"><input type="radio" name="q10" value="D"> D. Untuk melaporkan pedagang ke pemerintah</label>
+                    <label class="option-label"><input type="radio" name="q10" value="E"> E. Untuk menjadi pesaing usaha yang sama</label>
+                </div>
+
+                <button type="button" class="btn-submit" onclick="prosesNilai()"><i class="fas fa-paper-plane"></i> Kumpulkan & Cek Nilai</button>
+            </form>
+
+            <!-- Hasil Penilaian -->
+            <div id="quiz-result-container">
+                <h3 style="color:var(--warna-biru); font-size:1.8em;">Hasil Ujian Formatif</h3>
+                <p id="identitas-hasil" style="font-size:1.2em; font-weight:bold; margin-top:10px;"></p>
+                <div id="score-display">0</div>
+                <p id="pesan-hasil" style="font-size:1.2em; margin-bottom:20px; font-weight:bold;"></p>
+                
+                <p style="color:var(--warna-merah); font-weight:bold;"><i class="fas fa-exclamation-triangle"></i> Penting: Klik tombol di bawah ini untuk mengirimkan secara otomatis nilaimu ke Guru via Email!</p>
+                
+                <a href="#" id="btn-kirim-email" class="btn-email"><i class="fas fa-envelope-open-text"></i> Kirim Nilai ke Ir. Budhy Prasetyo</a>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // Mengatur Tanggal Hari Ini secara otomatis dengan format Bahasa Indonesia
+        const today = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').textContent = today.toLocaleDateString('id-ID', options);
+
+        function prosesNilai() {
+            const form = document.getElementById('quizForm');
+            const nama = document.getElementById('nama_siswa').value.trim();
+            const kelas = document.getElementById('kelas_siswa').value.trim();
+            
+            if(nama === "" || kelas === "") {
+                alert("Hei! Jangan lupa isi Nama dan Kelasmu dulu ya!");
+                return;
+            }
+
+            // Kunci Jawaban
+            const answers = {
+                q1: 'B', 
+                q2: 'E', 
+                q3: 'C',
+                q4: 'C',
+                q5: 'C',
+                q6: 'B',
+                q7: 'B',
+                q8: 'E',
+                q9: 'A',
+                q10: 'B'
+            };
+
+            let score = 0;
+            let totalQuestions = 10;
+            let answered = 0;
+
+            for (let q in answers) {
+                const selected = form.querySelector(`input[name="${q}"]:checked`);
+                if (selected) {
+                    answered++;
+                    if (selected.value === answers[q]) {
+                        score += (100 / totalQuestions); // Setiap soal bernilai 10 poin
+                    }
+                }
+            }
+
+            if (answered < totalQuestions) {
+                alert("Ayo jawab semua 10 pertanyaannya dulu sebelum dikumpulkan!");
+                return;
+            }
+
+            // Membulatkan nilai
+            score = Math.round(score);
+
+            // Menampilkan Hasil
+            document.getElementById('quizForm').style.display = 'none';
+            const resultContainer = document.getElementById('quiz-result-container');
+            resultContainer.style.display = 'block';
+            
+            document.getElementById('identitas-hasil').textContent = `${nama} - ${kelas}`;
+            document.getElementById('score-display').textContent = score;
+
+            const pesan = document.getElementById('pesan-hasil');
+            if(score === 100) {
+                pesan.innerHTML = '<i class="fas fa-star" style="color:var(--warna-oranye);"></i> Sempurna! Analisismu terhadap UMKM sangat tajam!';
+                pesan.style.color = 'var(--warna-hijau-tua)';
+            } else if(score >= 70) {
+                pesan.innerHTML = 'Bagus! Kamu sudah mulai memahami konsep operasional UMKM.';
+                pesan.style.color = 'var(--warna-oranye)';
+            } else {
+                pesan.innerHTML = 'Tetap Semangat! Yuk baca lagi catatannya pelan-pelan.';
+                pesan.style.color = 'var(--warna-merah)';
+            }
+
+            // Siapkan URL Mailto untuk mengirim email otomatis ke Guru
+            const emailGuru = "budhyp14@gmail.com";
+            const subjectEmail = `Nilai Kuis Ekonomi - ${nama} (${kelas})`;
+            const bodyEmail = `Halo Bapak Ir. Budhy Prasetyo,\n\nBerikut adalah hasil kuis (10 Soal Pilihan Ganda) materi Operasional UMKM dari siswa:\n\nNama: ${nama}\nKelas: ${kelas}\nNilai Akhir: ${score}/100\n\nTerima kasih.`;
+            
+            const mailtoLink = `mailto:${emailGuru}?subject=${encodeURIComponent(subjectEmail)}&body=${encodeURIComponent(bodyEmail)}`;
+            document.getElementById('btn-kirim-email').href = mailtoLink;
+
+            // Scroll ke hasil
+            resultContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+</body>
+</html>
