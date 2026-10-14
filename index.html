@@ -373,23 +373,17 @@
             margin: 10px 0;
         }
 
-        .btn-email {
-            background-color: var(--warna-biru);
-            color: white;
-            text-decoration: none;
-            padding: 15px 25px;
-            border-radius: 20px;
+        /* Notifikasi Sukses Simpan ke Google Sheets */
+        .status-sync {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 15px;
             font-weight: bold;
+            font-size: 1.1em;
+            border: 2px solid #28a745;
             display: inline-block;
-            margin-top: 20px;
-            font-size: 1.2em;
-            transition: transform 0.3s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        }
-
-        .btn-email:hover {
-            transform: scale(1.1);
-            background-color: var(--warna-ungu);
+            margin-top: 15px;
         }
 
         /* ----- ANIMASI KEYFRAMES ----- */
@@ -652,7 +646,7 @@
                     <label class="option-label"><input type="radio" name="q10" value="E"> E. Untuk menjadi pesaing usaha yang sama</label>
                 </div>
 
-                <button type="button" class="btn-submit" onclick="prosesNilai()"><i class="fas fa-paper-plane"></i> Kumpulkan & Cek Nilai</button>
+                <button type="button" id="btnSubmitQuiz" class="btn-submit" onclick="prosesNilai()"><i class="fas fa-paper-plane"></i> Kumpulkan & Cek Nilai</button>
             </form>
 
             <!-- Hasil Penilaian -->
@@ -662,24 +656,29 @@
                 <div id="score-display">0</div>
                 <p id="pesan-hasil" style="font-size:1.2em; margin-bottom:20px; font-weight:bold;"></p>
                 
-                <p style="color:var(--warna-merah); font-weight:bold;"><i class="fas fa-exclamation-triangle"></i> Penting: Klik tombol di bawah ini untuk mengirimkan secara otomatis nilaimu ke Guru via Email!</p>
-                
-                <a href="#" id="btn-kirim-email" class="btn-email"><i class="fas fa-envelope-open-text"></i> Kirim Nilai ke Ir. Budhy Prasetyo</a>
+                <!-- Notifikasi Pengiriman Berhasil ke Spreadsheet -->
+                <div class="status-sync">
+                    <i class="fas fa-check-double"></i> Nilai Anda telah otomatis tersimpan ke Spreadsheet Guru!
+                </div>
             </div>
         </section>
 
     </div>
 
     <script>
-        // Mengatur Tanggal Hari Ini secara otomatis dengan format Bahasa Indonesia
+        // Mengatur Tanggal Hari Ini secara otomatis
         const today = new Date();
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         document.getElementById('current-date').textContent = today.toLocaleDateString('id-ID', options);
+
+        // URL Google Apps Script milik Bro (SUDAH DIMASUKKAN)
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzMz2qJYdQeQl_PxIsobNZuXgisS65qua7HVA2GkG9G7V1mDBwj6ct8pc6yf4KmJdD1mQ/exec";
 
         function prosesNilai() {
             const form = document.getElementById('quizForm');
             const nama = document.getElementById('nama_siswa').value.trim();
             const kelas = document.getElementById('kelas_siswa').value.trim();
+            const btnSubmit = document.getElementById('btnSubmitQuiz');
             
             if(nama === "" || kelas === "") {
                 alert("Hei! Jangan lupa isi Nama dan Kelasmu dulu ya!");
@@ -722,36 +721,61 @@
             // Membulatkan nilai
             score = Math.round(score);
 
-            // Menampilkan Hasil
-            document.getElementById('quizForm').style.display = 'none';
-            const resultContainer = document.getElementById('quiz-result-container');
-            resultContainer.style.display = 'block';
-            
-            document.getElementById('identitas-hasil').textContent = `${nama} - ${kelas}`;
-            document.getElementById('score-display').textContent = score;
+            // Ubah tombol jadi status loading
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Menyimpan Nilai ke Spreadsheet...';
 
-            const pesan = document.getElementById('pesan-hasil');
+            let keteranganText = "";
             if(score === 100) {
-                pesan.innerHTML = '<i class="fas fa-star" style="color:var(--warna-oranye);"></i> Sempurna! Analisismu terhadap UMKM sangat tajam!';
-                pesan.style.color = 'var(--warna-hijau-tua)';
+                keteranganText = "Sempurna (Pemahaman Sangat Baik)";
             } else if(score >= 70) {
-                pesan.innerHTML = 'Bagus! Kamu sudah mulai memahami konsep operasional UMKM.';
-                pesan.style.color = 'var(--warna-oranye)';
+                keteranganText = "Tuntas (Pemahaman Baik)";
             } else {
-                pesan.innerHTML = 'Tetap Semangat! Yuk baca lagi catatannya pelan-pelan.';
-                pesan.style.color = 'var(--warna-merah)';
+                keteranganText = "Perlu Bimbingan";
             }
 
-            // Siapkan URL Mailto untuk mengirim email otomatis ke Guru
-            const emailGuru = "budhyp14@gmail.com";
-            const subjectEmail = `Nilai Kuis Ekonomi - ${nama} (${kelas})`;
-            const bodyEmail = `Halo Bapak Ir. Budhy Prasetyo,\n\nBerikut adalah hasil kuis (10 Soal Pilihan Ganda) materi Operasional UMKM dari siswa:\n\nNama: ${nama}\nKelas: ${kelas}\nNilai Akhir: ${score}/100\n\nTerima kasih.`;
-            
-            const mailtoLink = `mailto:${emailGuru}?subject=${encodeURIComponent(subjectEmail)}&body=${encodeURIComponent(bodyEmail)}`;
-            document.getElementById('btn-kirim-email').href = mailtoLink;
+            // Kirim data langsung ke Google Sheets (Apps Script)
+            const payload = {
+                nama: nama,
+                kelas: kelas,
+                nilai: score,
+                keterangan: keteranganText
+            };
 
-            // Scroll ke hasil
-            resultContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            fetch(SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors", 
+                headers: { "Content-Type": "text/plain" },
+                body: JSON.stringify(payload)
+            }).then(() => {
+                // Menampilkan Hasil setelah request terkirim
+                document.getElementById('quizForm').style.display = 'none';
+                const resultContainer = document.getElementById('quiz-result-container');
+                resultContainer.style.display = 'block';
+                
+                document.getElementById('identitas-hasil').textContent = `${nama} - ${kelas}`;
+                document.getElementById('score-display').textContent = score;
+
+                const pesan = document.getElementById('pesan-hasil');
+                if(score === 100) {
+                    pesan.innerHTML = '<i class="fas fa-star" style="color:var(--warna-oranye);"></i> Sempurna! Analisismu terhadap UMKM sangat tajam!';
+                    pesan.style.color = 'var(--warna-hijau-tua)';
+                } else if(score >= 70) {
+                    pesan.innerHTML = 'Bagus! Kamu sudah mulai memahami konsep operasional UMKM.';
+                    pesan.style.color = 'var(--warna-oranye)';
+                } else {
+                    pesan.innerHTML = 'Tetap Semangat! Yuk baca lagi catatannya pelan-pelan.';
+                    pesan.style.color = 'var(--warna-merah)';
+                }
+
+                // Scroll ke hasil
+                resultContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }).catch(err => {
+                console.error("Error:", err);
+                alert("Maaf, terjadi kesalahan saat menyimpan nilai. Silakan coba klik kumpulkan lagi.");
+                btnSubmit.disabled = false;
+                btnSubmit.innerHTML = '<i class="fas fa-paper-plane"></i> Kumpulkan & Cek Nilai';
+            });
         }
     </script>
 </body>
